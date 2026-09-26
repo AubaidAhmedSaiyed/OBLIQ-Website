@@ -24,7 +24,7 @@ export default function FeaturesPage() {
           eyebrow="Features"
           heading="Everything you need."
           subheading="Obliq provides a complete toolkit for modern open source development."
-          gradient
+
         />
         <div className="mt-12">
           <SectionPlaceholder section={featurePlaceholder} />

@@ -24,7 +24,7 @@ export default function BlogPage() {
           eyebrow="Blog"
           heading="From the community."
           subheading="Tutorials, updates, and open source stories from the Obliq team and contributors."
-          gradient
+
         />
         <div className="mt-12">
           <SectionPlaceholder section={blogPlaceholder} />

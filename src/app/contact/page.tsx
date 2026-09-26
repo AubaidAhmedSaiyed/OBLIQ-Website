@@ -24,7 +24,7 @@ export default function ContactPage() {
           eyebrow="Contact"
           heading="Let's talk."
           subheading="Have a question, idea, or want to contribute? We'd love to hear from you."
-          gradient
+
         />
         <div className="mt-12">
           <SectionPlaceholder section={contactPlaceholder} />

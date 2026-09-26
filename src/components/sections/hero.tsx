@@ -1,230 +1,292 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { GitFork, ArrowRight, Zap, Shield, Globe } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Container } from "@/components/ui/container";
-import { cn } from "@/lib/utils";
+import Link from "next/link";
 import { siteConfig } from "@/lib/site";
 
 /**
- * Hero — the reference section.
+ * Hero — matches obliqq.framer.ai exactly.
  *
- * ┌─────────────────────────────────────────────────────────────────────┐
- * │  CONTRIBUTOR REFERENCE                                              │
- * │                                                                     │
- * │  This is the pattern every Obliq section should follow.            │
- * │                                                                     │
- * │  Typography  → font-display, text-gradient-lime, opacity scale     │
- * │  Spacing     → container-obliq, section padding-y, gap-* tokens    │
- * │  Colors      → CSS variables from globals.css                      │
- * │  Buttons     → <Button> component with variant + size props        │
- * │  Container   → <Container> for consistent max-width                │
- * │  Animation   → CSS keyframes from globals.css, GSAP optional       │
- * │  Responsive  → mobile-first with sm: md: lg: breakpoints           │
- * │  Hierarchy   → eyebrow → h1 → subheading → CTAs → social proof     │
- * └─────────────────────────────────────────────────────────────────────┘
+ * Design:
+ * - Sky blue gradient background (#B8D4E9 → #DDE9F5)
+ * - Fluffy white cloud shapes (CSS blobs) on left + right
+ * - Big centered headline (dark, ~80px, bold)
+ * - Subheading paragraph (muted, max-w 560px)
+ * - Two pill buttons: dark "Try Obliq free" + muted "See features"
+ * - App screenshot / dashboard preview below
+ * - Fade into cream body below
  */
-
-const stats = [
-  { value: "100%",  label: "Open Source"  },
-  { value: "MIT",   label: "Licensed"     },
-  { value: "∞",     label: "Customisable" },
-];
-
-const badges = [
-  { icon: <Zap   className="h-3.5 w-3.5" />, text: "Blazing fast"      },
-  { icon: <Shield className="h-3.5 w-3.5" />, text: "Privacy-first"    },
-  { icon: <Globe  className="h-3.5 w-3.5" />, text: "Deploy anywhere"  },
-];
-
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
 
-  /* ── Subtle parallax on the background orbs ── */
+  /* Subtle mouse parallax on clouds */
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const section = sectionRef.current;
-      if (!section) return;
-      const { clientX, clientY } = e;
-      const { innerWidth, innerHeight } = window;
-      const xPct = (clientX / innerWidth  - 0.5) * 2; // -1 to 1
-      const yPct = (clientY / innerHeight - 0.5) * 2; // -1 to 1
-
-      const limeOrb  = section.querySelector<HTMLElement>("[data-orb='lime']");
-      const periOrb  = section.querySelector<HTMLElement>("[data-orb='peri']");
-      if (limeOrb) {
-        limeOrb.style.transform = `translate(${xPct * 18}px, ${yPct * 12}px)`;
-      }
-      if (periOrb) {
-        periOrb.style.transform = `translate(${xPct * -14}px, ${yPct * -10}px)`;
-      }
+    const onMove = (e: MouseEvent) => {
+      const sec = sectionRef.current;
+      if (!sec) return;
+      const xPct = (e.clientX / window.innerWidth  - 0.5);
+      const yPct = (e.clientY / window.innerHeight - 0.5);
+      sec.querySelectorAll<HTMLElement>("[data-cloud]").forEach((el, i) => {
+        const depth = i % 2 === 0 ? 12 : 8;
+        el.style.transform = `translate(${xPct * depth}px, ${yPct * depth * 0.5}px)`;
+      });
     };
-
-    window.addEventListener("mousemove", handleMouseMove, { passive: true });
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", onMove, { passive: true });
+    return () => window.removeEventListener("mousemove", onMove);
   }, []);
 
   return (
     <section
       ref={sectionRef}
       id="hero"
-      aria-label="Hero — Obliq open source platform"
-      className={cn(
-        "relative min-h-screen flex items-center",
-        "overflow-hidden bg-mesh"
-      )}
+      aria-label="Hero"
+      className="hero-sky relative overflow-hidden min-h-screen flex flex-col"
     >
-      {/* ── Background orbs ── */}
+      {/* ── Cloud: left ── */}
       <div
-        data-orb="lime"
-        className="pointer-events-none absolute -top-40 -right-40 h-[600px] w-[600px] rounded-full opacity-15 transition-transform duration-700 ease-out"
-        style={{
-          background:
-            "radial-gradient(circle, var(--obliq-lime) 0%, transparent 70%)",
-          filter: "blur(60px)",
-        }}
+        data-cloud="l1"
+        className="pointer-events-none absolute transition-transform duration-700 ease-out"
+        style={{ top: "12%", left: "-6%", width: "340px", height: "180px" }}
         aria-hidden="true"
-      />
+      >
+        <div style={{
+          width: "100%", height: "100%",
+          background: "rgba(255,255,255,0.65)",
+          borderRadius: "50%",
+          filter: "blur(32px)",
+        }} />
+      </div>
       <div
-        data-orb="peri"
-        className="pointer-events-none absolute -bottom-60 -left-40 h-[700px] w-[700px] rounded-full opacity-12 transition-transform duration-700 ease-out"
-        style={{
-          background:
-            "radial-gradient(circle, var(--obliq-periwinkle) 0%, transparent 70%)",
-          filter: "blur(80px)",
-        }}
+        data-cloud="l2"
+        className="pointer-events-none absolute transition-transform duration-700 ease-out"
+        style={{ top: "20%", left: "-2%", width: "220px", height: "110px" }}
         aria-hidden="true"
-      />
+      >
+        <div style={{
+          width: "100%", height: "100%",
+          background: "rgba(255,255,255,0.5)",
+          borderRadius: "50%",
+          filter: "blur(20px)",
+        }} />
+      </div>
 
-      {/* ── Grid pattern overlay ── */}
+      {/* ── Cloud: right ── */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.025]"
-        style={{
-          backgroundImage:
-            "linear-gradient(var(--obliq-cream) 1px, transparent 1px), linear-gradient(90deg, var(--obliq-cream) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-        }}
+        data-cloud="r1"
+        className="pointer-events-none absolute transition-transform duration-700 ease-out"
+        style={{ top: "10%", right: "-5%", width: "300px", height: "160px" }}
         aria-hidden="true"
-      />
+      >
+        <div style={{
+          width: "100%", height: "100%",
+          background: "rgba(255,255,255,0.6)",
+          borderRadius: "50%",
+          filter: "blur(30px)",
+        }} />
+      </div>
+      <div
+        data-cloud="r2"
+        className="pointer-events-none absolute transition-transform duration-700 ease-out"
+        style={{ top: "22%", right: "0%", width: "200px", height: "100px" }}
+        aria-hidden="true"
+      >
+        <div style={{
+          width: "100%", height: "100%",
+          background: "rgba(255,255,255,0.45)",
+          borderRadius: "50%",
+          filter: "blur(18px)",
+        }} />
+      </div>
 
-      {/* ── Content ── */}
-      <Container className="relative z-10 py-32 pt-40">
-        <div className="flex flex-col items-center text-center gap-8 max-w-4xl mx-auto">
+      {/* ── Spacer for floating navbar ── */}
+      <div className="h-[90px] flex-shrink-0" />
 
-          {/* ── Eyebrow badge ── */}
+      {/* ── Main hero content ── */}
+      <div className="container-obliq flex-1 flex flex-col items-center justify-center text-center pb-0 pt-12">
+
+        {/* Headline */}
+        <h1
+          className="font-black leading-[1.05] tracking-tight text-[var(--charcoal)] animate-fade-up"
+          style={{
+            fontSize: "clamp(2.8rem, 7vw, 5.5rem)",
+            maxWidth: "800px",
+            animationDelay: "0ms",
+          }}
+        >
+          {siteConfig.tagline}
+        </h1>
+
+        {/* Subheading */}
+        <p
+          className="mt-5 animate-fade-up"
+          style={{
+            color: "var(--body-text)",
+            fontSize: "clamp(1rem, 2vw, 1.15rem)",
+            lineHeight: 1.7,
+            maxWidth: "560px",
+            animationDelay: "80ms",
+          }}
+        >
+          {siteConfig.description}
+        </p>
+
+        {/* CTA buttons */}
+        <div
+          className="mt-8 flex flex-wrap items-center justify-center gap-3 animate-fade-up"
+          style={{ animationDelay: "160ms" }}
+        >
+          <Link href="/contact" className="btn-primary" style={{ fontSize: "1rem", padding: "0.75rem 1.75rem" }}>
+            Try Obliq free
+          </Link>
+          <Link
+            href="/features"
+            className="btn-secondary"
+            style={{ fontSize: "1rem", padding: "0.75rem 1.75rem" }}
+          >
+            See features
+          </Link>
+        </div>
+
+        {/* ── App screenshot / dashboard preview ── */}
+        <div
+          className="mt-14 w-full animate-fade-up"
+          style={{ animationDelay: "240ms", maxWidth: "900px" }}
+        >
           <div
-            className={cn(
-              "inline-flex items-center gap-2.5 rounded-full px-4 py-2",
-              "border border-[rgba(200,245,96,0.3)] bg-[rgba(200,245,96,0.06)]",
-              "animate-fade-in",
-            )}
-            style={{ animationDelay: "0ms" }}
+            className="card overflow-hidden"
+            style={{
+              borderRadius: "20px 20px 0 0",
+              boxShadow: "0 8px 60px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)",
+            }}
           >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--obliq-lime)] opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--obliq-lime)]" />
-            </span>
-            <span className="text-xs font-semibold tracking-widest uppercase text-[var(--obliq-lime)]">
-              Open Source · Free forever
-            </span>
-          </div>
-
-          {/* ── H1 heading ── */}
-          <h1
-            className={cn(
-              "font-display font-black leading-[1.05] tracking-tight",
-              "text-5xl sm:text-6xl md:text-7xl lg:text-8xl",
-              "animate-fade-up"
-            )}
-            style={{ animationDelay: "80ms" }}
-          >
-            Build without{" "}
-            <span className="text-gradient-lime">limits.</span>
-          </h1>
-
-          {/* ── Subheading ── */}
-          <p
-            className={cn(
-              "max-w-2xl text-lg sm:text-xl leading-relaxed",
-              "text-[var(--obliq-cream)] opacity-65",
-              "animate-fade-up"
-            )}
-            style={{ animationDelay: "160ms" }}
-          >
-            {siteConfig.description} Join thousands of developers shipping
-            faster with a platform designed for the open web.
-          </p>
-
-          {/* ── CTA buttons ── */}
-          <div
-            className="flex flex-col sm:flex-row items-center gap-4 animate-fade-up"
-            style={{ animationDelay: "240ms" }}
-          >
-            <Button href="/contact" size="xl" variant="primary">
-              Get started free
-              <ArrowRight className="h-5 w-5" aria-hidden="true" />
-            </Button>
-            <Button
-              href={siteConfig.links.github}
-              size="xl"
-              variant="secondary"
+            {/* Window chrome bar */}
+            <div
+              className="flex items-center gap-2 px-4 border-b border-[rgba(0,0,0,0.07)]"
+              style={{ background: "#f2f0eb", height: "38px" }}
             >
-              <GitFork className="h-5 w-5" aria-hidden="true" />
-              Star on GitHub
-            </Button>
-          </div>
-
-          {/* ── Feature badges ── */}
-          <div
-            className="flex flex-wrap items-center justify-center gap-3 animate-fade-up"
-            style={{ animationDelay: "320ms" }}
-          >
-            {badges.map((b) => (
-              <span
-                key={b.text}
-                className={cn(
-                  "inline-flex items-center gap-1.5 rounded-full px-3 py-1.5",
-                  "text-xs font-medium text-[var(--obliq-cream)] opacity-60",
-                  "border border-[var(--obliq-border)]",
-                  "bg-[rgba(255,255,255,0.03)]"
-                )}
+              <div className="flex gap-1.5">
+                <div className="h-2.5 w-2.5 rounded-full bg-red-400" />
+                <div className="h-2.5 w-2.5 rounded-full bg-yellow-400" />
+                <div className="h-2.5 w-2.5 rounded-full bg-green-400" />
+              </div>
+              <div
+                className="flex-1 mx-4 h-5 rounded-full flex items-center px-3"
+                style={{ background: "rgba(0,0,0,0.06)", maxWidth: "260px" }}
               >
-                <span className="text-[var(--obliq-periwinkle)]">{b.icon}</span>
-                {b.text}
-              </span>
-            ))}
-          </div>
+                <span className="text-[10px] text-[var(--muted)]">obliq.in/dashboard</span>
+              </div>
+            </div>
 
-          {/* ── Stats ── */}
-          <div
-            className="w-full animate-fade-up"
-            style={{ animationDelay: "400ms" }}
-          >
-            <div className="divider mb-8" />
-            <dl className="flex flex-wrap items-center justify-center gap-8 sm:gap-16">
-              {stats.map((s) => (
-                <div key={s.label} className="flex flex-col items-center gap-1">
-                  <dt className="text-3xl sm:text-4xl font-display font-black text-gradient-lime">
-                    {s.value}
-                  </dt>
-                  <dd className="text-sm text-[var(--obliq-cream)] opacity-50 font-medium">
-                    {s.label}
-                  </dd>
+            {/* Dashboard body */}
+            <div
+              className="flex"
+              style={{ background: "#faf9f7", minHeight: "320px" }}
+            >
+              {/* Sidebar */}
+              <div
+                className="flex-shrink-0 border-r border-[rgba(0,0,0,0.06)] p-4 flex flex-col gap-1"
+                style={{ width: "180px", background: "#f5f3ef" }}
+              >
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="h-5 w-5 rounded bg-[var(--charcoal)]" />
+                  <span className="text-xs font-semibold text-[var(--charcoal)]">OBLIQ</span>
                 </div>
-              ))}
-            </dl>
+                {["Home", "Clients", "Projects", "Invoices", "Contracts", "Accounting"].map((item) => (
+                  <div
+                    key={item}
+                    className="flex items-center gap-2 px-2 py-1.5 rounded-lg"
+                    style={{
+                      background: item === "Home" ? "rgba(0,0,0,0.07)" : "transparent",
+                    }}
+                  >
+                    <div className="h-3 w-3 rounded bg-[var(--muted)] opacity-40" />
+                    <span className="text-xs text-[var(--charcoal)] opacity-70">{item}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Main area */}
+              <div className="flex-1 p-6 flex flex-col gap-4">
+                {/* Greeting */}
+                <div>
+                  <h3 className="font-semibold text-sm text-[var(--charcoal)]">Hello, there 👋</h3>
+                  <p className="text-xs text-[var(--muted)] mt-0.5">What are you working on?</p>
+                </div>
+
+                {/* Stat cards */}
+                <div className="grid grid-cols-4 gap-3">
+                  {[
+                    { label: "Total projects",    value: "24" },
+                    { label: "Active projects",   value: "12" },
+                    { label: "Completed",         value: "10" },
+                    { label: "Total hours",       value: "840h" },
+                  ].map((s) => (
+                    <div
+                      key={s.label}
+                      className="card-cream flex flex-col gap-1 p-3"
+                      style={{ borderRadius: "12px" }}
+                    >
+                      <span className="text-[10px] text-[var(--muted)]">{s.label}</span>
+                      <span className="text-lg font-bold text-[var(--charcoal)]">{s.value}</span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Chart placeholder */}
+                <div className="card p-4 flex flex-col gap-2" style={{ borderRadius: "14px" }}>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-semibold text-[var(--charcoal)]">Hours overview</span>
+                    <div className="flex gap-3">
+                      <span className="text-[10px] text-blue-400">● Billable</span>
+                      <span className="text-[10px] text-[var(--muted)]">● Non-Billable</span>
+                    </div>
+                  </div>
+                  {/* Simple bar chart */}
+                  <div className="flex items-end gap-1.5 h-14 mt-2">
+                    {[55, 38, 70, 42, 65, 35, 80, 48, 72, 38, 60, 44].map((h, i) => (
+                      <div key={i} className="flex-1 flex flex-col gap-0.5 items-center">
+                        <div
+                          className="w-full rounded-sm"
+                          style={{
+                            height: `${h * 0.8}%`,
+                            background: i % 2 === 0 ? "#93b4d8" : "#c8d8e8",
+                            opacity: 0.85,
+                          }}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Right panel — quick actions */}
+              <div
+                className="flex-shrink-0 border-l border-[rgba(0,0,0,0.06)] p-4 flex flex-col gap-3"
+                style={{ width: "160px", background: "#f9f7f4" }}
+              >
+                <span className="text-[10px] font-semibold text-[var(--muted)] uppercase tracking-wider">Quick actions</span>
+                {["Draft a proposal", "Create a contract", "Add a form"].map((a) => (
+                  <div
+                    key={a}
+                    className="card flex flex-col items-center gap-2 p-3 cursor-pointer hover:bg-[var(--cream-2)] transition-colors"
+                    style={{ borderRadius: "12px" }}
+                  >
+                    <div className="h-7 w-7 rounded-lg bg-[var(--cream-pill)] flex items-center justify-center">
+                      <div className="h-3 w-3 rounded bg-[var(--muted)] opacity-50" />
+                    </div>
+                    <span className="text-[10px] text-center text-[var(--charcoal)] opacity-70 leading-tight">{a}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
-      </Container>
+      </div>
 
-      {/* ── Bottom fade gradient ── */}
+      {/* ── Fade to cream at bottom ── */}
       <div
-        className="pointer-events-none absolute bottom-0 left-0 right-0 h-32"
-        style={{
-          background:
-            "linear-gradient(to bottom, transparent, var(--obliq-charcoal))",
-        }}
+        className="pointer-events-none absolute bottom-0 left-0 right-0"
+        style={{ height: "120px", background: "linear-gradient(to bottom, transparent, var(--cream))" }}
         aria-hidden="true"
       />
     </section>

@@ -7,9 +7,9 @@
 
 export const siteConfig = {
   name: "Obliq",
-  tagline: "Open Source. No Limits.",
+  tagline: "Compliance work breaks before filing.",
   description:
-    "Obliq is an open-source platform empowering developers to build, collaborate, and ship without boundaries.",
+    "CA firms manage dozens of recurring deadlines across multiple clients. The challenge is rarely filing itself — it's delayed documents, fragmented follow-ups, and poor visibility before deadlines become risky.",
   url: "https://obliq.in",
   ogImage: "https://obliq.in/og.png",
 

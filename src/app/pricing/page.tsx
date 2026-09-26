@@ -24,7 +24,7 @@ export default function PricingPage() {
           eyebrow="Pricing"
           heading="Simple, honest pricing."
           subheading="Start for free. Upgrade when you need more. Always open source."
-          gradient
+
         />
         <div className="mt-12">
           <SectionPlaceholder section={pricingPlaceholder} />
