@@ -11,6 +11,7 @@ This is an open-source project and every contribution — big or small — is we
 - [Development Workflow](#development-workflow)
 - [Project Structure](#project-structure)
 - [Design System](#design-system)
+- [Assets & Images](#assets--images)
 - [How to Claim an Issue](#how-to-claim-an-issue)
 - [Pull Request Guidelines](#pull-request-guidelines)
 - [CI Checks](#ci-checks)
@@ -132,6 +133,48 @@ It demonstrates the correct pattern for:
 - Accessibility
 
 ---
+
+## Assets & Images
+
+To keep the website repository lightweight, **do not commit screenshots, mockups, or binary imagery directly to `OBLIQ-Website`**.
+
+All brand assets, logos, and product screenshots belong in the dedicated repository:  
+👉 **[OBLIQ-in/brand-assets](https://github.com/OBLIQ-in/brand-assets)**
+
+### Contributor Workflow for Adding Images
+
+1. **Fork & clone `brand-assets`**:
+   ```bash
+   git clone https://github.com/<your-username>/brand-assets.git
+   cd brand-assets
+   ```
+2. **Add the file into the correct folder**:
+   - `logos/` — SVGs for brand logos and icons
+   - `screenshots/` — UI screenshots and mockups (issues #18, #19, #20)
+   - `imagery/` — Background patterns, banners, and illustrations
+3. **Commit & Open a PR**:
+   ```bash
+   git add -A
+   git commit -m "assets: add compliance tracker screenshot"
+   git push origin main
+   ```
+4. **Use it in the Website**:
+   Once merged (or in your PR), reference the asset using `getBrandAssetUrl()` from `@/lib/assets`:
+   ```tsx
+   import Image from "next/image";
+   import { getBrandAssetUrl } from "@/lib/assets";
+
+   export function MyComponent() {
+     return (
+       <Image
+         src={getBrandAssetUrl("screenshots/dashboard.png")}
+         alt="Obliq Dashboard"
+         width={1200}
+         height={700}
+       />
+     );
+   }
+   ```
 
 ## How to Claim an Issue
 
