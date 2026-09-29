@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { type HTMLAttributes } from "react";
+import { Reveal } from "@/components/ui/reveal";
 
 interface SectionHeadingProps extends HTMLAttributes<HTMLDivElement> {
   eyebrow?: string;
@@ -17,7 +18,7 @@ export function SectionHeading({
   ...props
 }: SectionHeadingProps) {
   return (
-    <div
+    <Reveal
       className={cn(
         "flex flex-col gap-3",
         align === "center" && "items-center text-center",
@@ -40,6 +41,6 @@ export function SectionHeading({
           {subheading}
         </p>
       )}
-    </div>
+    </Reveal>
   );
 }

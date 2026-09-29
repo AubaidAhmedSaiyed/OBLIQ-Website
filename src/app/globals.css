@@ -309,6 +309,22 @@
     filter: blur(28px);
   }
 
+  /* ── Scroll reveal (see components/ui/reveal.tsx) ──
+     Reveal only marks below-the-fold elements "pending" after mount, so
+     server HTML, no-JS and reduced-motion users always see content. */
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal[data-reveal="pending"] {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    .reveal[data-reveal="shown"] {
+      transition:
+        opacity 0.6s cubic-bezier(0.16,1,0.3,1),
+        transform 0.6s cubic-bezier(0.16,1,0.3,1);
+      transition-delay: var(--reveal-delay, 0ms);
+    }
+  }
+
   /* ── Placeholder sections (contributor board) ── */
   .placeholder-section {
     border: 2px dashed rgba(0,0,0,0.12);
@@ -319,5 +335,17 @@
   .placeholder-section:hover {
     border-color: rgba(0,0,0,0.22);
     background: rgba(0,0,0,0.035);
+  }
+}
+
+/* ── Reduced motion: no movement anywhere — content is simply visible ── */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

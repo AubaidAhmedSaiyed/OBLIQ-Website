@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { GitBranch, ExternalLink, Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Reveal } from "@/components/ui/reveal";
 import type { PlaceholderSection } from "@/types";
 
 interface SectionPlaceholderProps {
@@ -10,13 +11,12 @@ interface SectionPlaceholderProps {
 
 export function SectionPlaceholder({ section, index = 0 }: SectionPlaceholderProps) {
   return (
-    <div
+    <Reveal
+      index={index}
       className={cn(
         "placeholder-section w-full px-6 py-8 sm:px-8 sm:py-10",
-        "flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5",
-        "animate-fade-up"
+        "flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5"
       )}
-      style={{ animationDelay: `${index * 60}ms` }}
       aria-label={`Placeholder: ${section.title}`}
     >
       <div className="flex items-start gap-4">
@@ -54,7 +54,7 @@ export function SectionPlaceholder({ section, index = 0 }: SectionPlaceholderPro
         Contribute
         <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
       </Link>
-    </div>
+    </Reveal>
   );
 }
 

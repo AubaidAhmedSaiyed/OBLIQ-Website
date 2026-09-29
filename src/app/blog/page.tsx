@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, PenLine } from "lucide-react";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { Reveal } from "@/components/ui/reveal";
 import { coverTones, formatPostDate, getAllPosts, type BlogPost } from "@/lib/blog";
 import { cn } from "@/lib/utils";
 
@@ -37,12 +38,16 @@ export default async function BlogPage() {
           <EmptyState />
         ) : (
           <div className="mt-14 flex flex-col gap-6">
-            <PostCard post={featured} featured />
+            <Reveal className="flex">
+              <PostCard post={featured} featured />
+            </Reveal>
             {rest.length > 0 && (
               <ul role="list" className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {rest.map((post) => (
+                {rest.map((post, i) => (
                   <li key={post.slug} className="flex">
-                    <PostCard post={post} />
+                    <Reveal index={i} className="flex w-full">
+                      <PostCard post={post} />
+                    </Reveal>
                   </li>
                 ))}
               </ul>
