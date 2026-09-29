@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
@@ -17,9 +18,13 @@ export interface PricingCardProps {
   description: string;
   features: string[];
   featured?: boolean;
-  /** Small label on the card, e.g. "Most popular". */
+  /** Small label next to the plan name, e.g. "Save 20%". */
   badge?: string;
+  /** Show the badge only for this billing period (e.g. "Save 20%" on annual). */
+  badgeBilling?: keyof Billed;
   cta: { label: string; href: string };
+  /** Content above the plan name — the featured card holds the billing toggle here. */
+  top?: ReactNode;
   className?: string;
 }
 
@@ -36,16 +41,16 @@ function BilledText({ value }: { value: string | Billed }) {
 function CheckIcon() {
   return (
     <svg
-      viewBox="0 0 16 16"
-      className="mt-0.5 h-4 w-4 flex-shrink-0"
+      viewBox="0 0 24 24"
+      className="h-6 w-6 flex-shrink-0 text-[var(--ink)]"
       fill="none"
       stroke="currentColor"
-      strokeWidth="2"
+      strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
     >
-      <path d="M3.5 8.5l3 3 6-7" />
+      <path d="M5 12.5l4.5 4.5L19 7.5" />
     </svg>
   );
 }
@@ -58,82 +63,77 @@ export function PricingCard({
   features,
   featured = false,
   badge,
+  badgeBilling,
   cta,
+  top,
   className,
 }: PricingCardProps) {
   return (
     <div
       className={cn(
-        "flex flex-col gap-6 p-7 rounded-[var(--radius-card)] border",
+        "relative flex flex-col gap-8 p-8 rounded-3xl font-rounded",
         featured
-          ? "bg-[var(--charcoal)] text-[var(--cream)] border-transparent shadow-xl"
-          : "bg-white text-[var(--charcoal)] border-[var(--border-card)]",
+          ? [
+              "bg-[linear-gradient(180deg,var(--sky-card)_15%,var(--peach-card)_100%)]",
+              // Blue ring drawn inside the card edge, like the Framer design
+              "after:pointer-events-none after:absolute after:inset-0 after:rounded-3xl",
+              "after:border-[5px] after:border-[var(--sky-ring)]",
+            ]
+          : "bg-white/70",
         className
       )}
     >
-      <div className="flex items-center justify-between gap-3">
-        <h3 className="text-lg font-bold">{name}</h3>
-        {badge && (
-          <span
-            className={cn(
-              "rounded-full px-3 py-1 text-xs font-semibold",
-              featured
-                ? "bg-[var(--cream)] text-[var(--charcoal)]"
-                : "bg-[var(--cream-pill)] text-[var(--charcoal)]"
+      {top}
+
+      <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-1">
+          {/* min-h keeps the row the badge's height, so hiding it doesn't shift the card */}
+          <div className={cn("flex items-center gap-2", badge && "min-h-7")}>
+            <h3 className="text-lg font-medium leading-[1.4] text-[var(--ink-soft)]">{name}</h3>
+            {badge && (
+              <span
+                className={cn(
+                  "rounded-full bg-[var(--success-bg)] px-3 py-1 text-sm font-medium leading-[1.4] text-[var(--success)]",
+                  badgeBilling === "annually" && "in-data-[billing=monthly]:hidden",
+                  badgeBilling === "monthly" && "hidden in-data-[billing=monthly]:inline-block"
+                )}
+              >
+                {badge}
+              </span>
             )}
-          >
-            {badge}
-          </span>
-        )}
+          </div>
+
+          {/* Fixed line height so switching billing periods never shifts the layout */}
+          <p className="text-[40px] font-semibold leading-[48px] tracking-[-0.03em] text-[var(--ink)]">
+            <BilledText value={price} />
+            {period && <BilledText value={period} />}
+          </p>
+        </div>
+
+        <p className="text-lg leading-[1.5] text-[var(--ink-soft)]">{description}</p>
+
+        <ul className="flex flex-col gap-[15px]" role="list">
+          {features.map((feature) => (
+            <li key={feature} className="flex items-start gap-3 text-lg leading-[1.5] text-[var(--ink-soft)]">
+              <CheckIcon />
+              <span>{feature}</span>
+            </li>
+          ))}
+        </ul>
       </div>
-
-      {/* Fixed height so switching billing periods never shifts the layout */}
-      <p className="flex h-12 items-end gap-1">
-        <span className="text-4xl font-black tracking-tight leading-none">
-          <BilledText value={price} />
-        </span>
-        {period && (
-          <span
-            className={cn(
-              "text-sm font-medium",
-              featured ? "text-[var(--cream)] opacity-70" : "text-[var(--muted)]"
-            )}
-          >
-            <BilledText value={period} />
-          </span>
-        )}
-      </p>
-
-      <p
-        className={cn(
-          "text-sm leading-relaxed",
-          featured ? "text-[var(--cream)] opacity-80" : "text-[var(--body-text)]"
-        )}
-      >
-        {description}
-      </p>
 
       <Button
         href={cta.href}
-        variant={featured ? "secondary" : "primary"}
-        size="md"
-        className="w-full"
+        size="lg"
+        className={cn(
+          "mt-auto h-[55px] w-full text-base",
+          featured
+            ? "bg-[var(--ink)] text-white hover:opacity-90"
+            : "bg-[var(--pill)] text-[var(--ink)] hover:bg-[var(--pill-hover)] hover:opacity-100"
+        )}
       >
         {cta.label}
       </Button>
-
-      <ul className="flex flex-col gap-3" role="list">
-        {features.map((feature) => (
-          <li key={feature} className="flex items-start gap-2.5 text-sm">
-            <span className={featured ? "text-[var(--cream)]" : "text-[var(--charcoal)]"}>
-              <CheckIcon />
-            </span>
-            <span className={featured ? "opacity-90" : "text-[var(--body-text)]"}>
-              {feature}
-            </span>
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }
