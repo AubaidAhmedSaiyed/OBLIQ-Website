@@ -33,12 +33,26 @@
   --blue-accent: #3b82f6;
   --blue-light:  #60a5fa;
 
+  /* ── Pricing (matches obliqq.framer.ai) ── */
+  --ink:         #1a1615;
+  --ink-soft:    #453f3d;
+  --pill:        #f4f1ee;
+  --pill-hover:  #ebe6e1;
+  --sky-card:    #b7d5f1;
+  --peach-card:  #f4e6da;
+  --sky-ring:    #84b9ef;
+  --success:     #00a82d;
+  --success-bg:  #eaf3ed;
+  --pricing-bg-top:    #ebeef2;
+  --pricing-bg-bottom: #e3ecf5;
+
   /* ── Borders ── */
   --border:      rgba(0,0,0,0.08);
   --border-card: rgba(0,0,0,0.06);
 
   /* ── Fonts ── */
   --font-sans:   "Inter", system-ui, sans-serif;
+  --font-rounded: "Open Runde", "Inter", system-ui, sans-serif;
 
   /* ── Radius ── */
   --radius-pill: 9999px;
@@ -52,6 +66,7 @@
 }
 
 @theme inline {
+  --font-rounded:        var(--font-rounded);
   --color-sky-top:       var(--sky-top);
   --color-sky-bottom:    var(--sky-bottom);
   --color-cream:         var(--cream);

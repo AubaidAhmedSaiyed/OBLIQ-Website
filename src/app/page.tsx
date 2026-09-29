@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/sections/hero";
+import { Pricing } from "@/components/sections/pricing";
 import { SectionPlaceholder, placeholderSections } from "@/components/sections/placeholder";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { siteConfig } from "@/lib/site";
@@ -46,6 +47,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <Pricing />
     </>
   );
 }
