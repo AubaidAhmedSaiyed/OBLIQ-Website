@@ -213,6 +213,67 @@
     background: var(--border);
     width: 100%;
   }
+
+  /* ── Long-form prose (blog posts, legal pages) ── */
+  .prose-obliq {
+    color: var(--body-text);
+    font-size: 1.0625rem;
+    line-height: 1.8;
+  }
+  .prose-obliq > * + * { margin-top: 1.25em; }
+  .prose-obliq h2,
+  .prose-obliq h3 {
+    color: var(--charcoal);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    scroll-margin-top: 7rem;
+  }
+  .prose-obliq h2 { font-size: 1.6rem; margin-top: 2.2em; }
+  .prose-obliq h3 { font-size: 1.25rem; margin-top: 1.8em; }
+  .prose-obliq h2 + *,
+  .prose-obliq h3 + * { margin-top: 0.75em; }
+  .prose-obliq strong { color: var(--charcoal); font-weight: 600; }
+  .prose-obliq a {
+    color: var(--charcoal);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-color: rgba(0,0,0,0.25);
+    transition: text-decoration-color 0.2s;
+  }
+  .prose-obliq a:hover { text-decoration-color: var(--charcoal); }
+  .prose-obliq ul,
+  .prose-obliq ol { padding-left: 1.4em; }
+  .prose-obliq ul { list-style: disc; }
+  .prose-obliq ol { list-style: decimal; }
+  .prose-obliq li + li { margin-top: 0.4em; }
+  .prose-obliq li::marker { color: var(--muted); }
+  .prose-obliq blockquote {
+    border-left: 3px solid var(--charcoal);
+    padding: 0.25em 0 0.25em 1.1em;
+    color: var(--charcoal);
+    font-size: 1.15rem;
+    font-weight: 500;
+  }
+  .prose-obliq code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.875em;
+    background: var(--cream-pill);
+    border-radius: 6px;
+    padding: 0.15em 0.4em;
+  }
+  .prose-obliq pre {
+    background: var(--ink);
+    color: var(--cream);
+    border-radius: var(--radius-sm);
+    padding: 1.1em 1.25em;
+    overflow-x: auto;
+    font-size: 0.875rem;
+    line-height: 1.7;
+  }
+  .prose-obliq pre code { background: none; padding: 0; font-size: inherit; color: inherit; }
+  .prose-obliq hr { border: 0; height: 1px; background: var(--border); margin-block: 2.5em; }
+  .prose-obliq img { border-radius: var(--radius-lg); }
 }
 
 /* ── Animations ── */
