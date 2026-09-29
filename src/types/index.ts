@@ -24,6 +24,8 @@ export interface BlogFrontmatter {
   date: string;
   /** Placeholder cover art tone until real covers come from brand-assets */
   cover?: "sky" | "peach" | "cream";
+  /** Pin this post as the full-width feature on /blog (newest featured post wins) */
+  featured?: boolean;
 }
 
 export interface BlogPost extends BlogFrontmatter {
