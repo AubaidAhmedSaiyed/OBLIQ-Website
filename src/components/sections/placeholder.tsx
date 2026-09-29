@@ -76,12 +76,6 @@ export const placeholderSections: PlaceholderSection[] = [
     issueUrl: "https://github.com/OBLIQ-in/OBLIQ-Website/issues/27",
   },
   {
-    title: "Integrations Section",
-    description: "Show the ecosystem of tools that integrate with Obliq — logos and categories.",
-    issueNumber: 32,
-    issueUrl: "https://github.com/OBLIQ-in/OBLIQ-Website/issues/32",
-  },
-  {
     title: "Testimonials Section",
     description: "Social proof from real users — quote cards with avatar, name, role and company.",
     issueNumber: 34,
