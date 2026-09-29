@@ -5,6 +5,9 @@
  * metadata as `export const frontmatter = { ... }` (see BlogFrontmatter).
  * Adding a post means adding one .mdx file — no code changes needed.
  *
+ * Keep at least one .mdx file in the folder (the template post does this):
+ * Turbopack fails to resolve the dynamic import below when nothing matches.
+ *
  * Server-only: uses the filesystem at build time.
  */
 import fs from "node:fs";
