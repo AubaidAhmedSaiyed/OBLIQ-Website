@@ -37,6 +37,10 @@ export function Pricing() {
             ))}
           </div>
         </BillingProvider>
+
+        <p className="text-center font-rounded text-base leading-6 text-[var(--ink-muted)]">
+          Trusted by 1+ CA firms, startups, freelancers and studios
+        </p>
       </div>
     </section>
   );
