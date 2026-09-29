@@ -43,6 +43,8 @@
   --sky-ring:    #84b9ef;
   --success:     #00a82d;
   --success-bg:  #eaf3ed;
+  --pricing-bg-top:    #ebeef2;
+  --pricing-bg-bottom: #e3ecf5;
 
   /* ── Borders ── */
   --border:      rgba(0,0,0,0.08);
