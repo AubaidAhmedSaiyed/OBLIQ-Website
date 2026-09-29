@@ -10,9 +10,34 @@ export const metadata: Metadata = {
   description: siteConfig.description,
 };
 
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: siteConfig.name,
+  url: siteConfig.url,
+  logo: siteConfig.ogImage,
+  description: siteConfig.description,
+  sameAs: [
+    siteConfig.links.github,
+    siteConfig.links.twitter,
+    siteConfig.links.discord,
+  ],
+  contactPoint: {
+    "@type": "ContactPoint",
+    email: siteConfig.email.support,
+    contactType: "customer support",
+  },
+};
+
 export default function HomePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(organizationJsonLd),
+        }}
+      />
       <Hero />
 
       {/* Contributor to-do board */}
