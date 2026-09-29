@@ -41,7 +41,7 @@
   --sky-card:    #b7d5f1;
   --peach-card:  #f4e6da;
   --sky-ring:    #84b9ef;
-  --success:     #00a82d;
+  --success:     #007a21; /* 4.87:1 on --success-bg (WCAG AA) */
   --success-bg:  #eaf3ed;
   --pricing-bg-top:    #ebeef2;
   --pricing-bg-bottom: #e3ecf5;
@@ -206,6 +206,22 @@
     text-transform: uppercase;
     color: var(--muted);
   }
+
+  /* ── Skip link: first focusable element, visible only on keyboard focus ── */
+  .skip-link {
+    position: fixed;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 100;
+    padding: 0.6rem 1.1rem;
+    border-radius: var(--radius-pill);
+    background: var(--charcoal);
+    color: var(--cream);
+    font-size: 0.875rem;
+    font-weight: 600;
+    transform: translateY(-200%);
+  }
+  .skip-link:focus { transform: none; }
 
   /* ── Divider ── */
   .divider {

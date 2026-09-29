@@ -28,6 +28,7 @@ export default async function BlogPage() {
     <div className="section pt-36" style={{ background: "var(--cream)" }}>
       <div className="container-obliq">
         <SectionHeading
+          as="h1"
           eyebrow="Blog"
           heading="From the community."
           subheading={description}

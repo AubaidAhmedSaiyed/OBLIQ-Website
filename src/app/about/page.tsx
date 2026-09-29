@@ -14,6 +14,7 @@ export default function AboutPage() {
     <div className="section pt-36" style={{ background: "var(--cream)" }}>
       <div className="container-obliq max-w-3xl">
         <SectionHeading
+          as="h1"
           eyebrow="About"
           heading="Built in the open."
           subheading="Obliq is a community-driven open source project. We believe the best tools are built transparently, by people who use them every day."

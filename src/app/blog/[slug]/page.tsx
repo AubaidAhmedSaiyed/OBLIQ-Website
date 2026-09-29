@@ -154,12 +154,6 @@ function CoverArt({ post }: { post: BlogPost }) {
     >
       <span className="absolute -right-10 -top-16 h-56 w-56 rounded-full bg-white/40" />
       <span className="absolute -bottom-20 left-10 h-48 w-48 rounded-full bg-white/30" />
-      <span
-        className="absolute bottom-6 right-8 font-black tracking-tight text-[var(--charcoal)] opacity-15"
-        style={{ fontSize: "clamp(2rem, 6vw, 4rem)" }}
-      >
-        {post.category}
-      </span>
     </div>
   );
 }
