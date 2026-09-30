@@ -47,6 +47,13 @@
   --pricing-bg-top:    #ebeef2;
   --pricing-bg-bottom: #e3ecf5;
 
+  /* ── Contact / Join our team (matches obliqq.framer.ai/contact-us) ── */
+  --contact-bg-top:    #9cc1e7;
+  --contact-bg-bottom: #eddfd0;
+  --eyebrow-brown:     #614a44;
+  --field-shadow:      0 4px 50px rgba(97,74,68,0.06);
+  --danger:            #c8321e;
+
   /* ── Mockup frames (matches obliqq.framer.ai) ── */
   --mist:           #f9f8f8;
   --mockup-app-top:    #99c1e9;
