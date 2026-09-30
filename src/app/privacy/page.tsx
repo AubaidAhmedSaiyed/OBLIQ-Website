@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/privacy" },
 };
 
-const LAST_UPDATED = "29 September 2026";
+const LAST_UPDATED = "30 September 2026";
 
 function PolicySection({
   id,
@@ -145,14 +145,6 @@ export default function PrivacyPage() {
                 <strong className="text-[var(--charcoal)]">Hosting provider</strong> — serves the
                 website and keeps server logs.
                 {/* TODO(maintainers): name the hosting provider (e.g. Vercel) and link its privacy policy. */}
-              </li>
-              <li>
-                <strong className="text-[var(--charcoal)]">Google Fonts</strong> — delivers the
-                Inter typeface.{" "}
-                <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
-                  Google Privacy Policy
-                </a>
-                .
               </li>
               <li>
                 <strong className="text-[var(--charcoal)]">GitHub and jsDelivr</strong> — host

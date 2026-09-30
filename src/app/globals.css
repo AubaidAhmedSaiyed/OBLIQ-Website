@@ -7,7 +7,6 @@
    - Rounded pill components
    ============================================================ */
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap");
 @import "tailwindcss";
 
 :root {
@@ -64,8 +63,9 @@
   --border-card: rgba(0,0,0,0.06);
 
   /* ── Fonts ── */
-  --font-sans:   "Inter", system-ui, sans-serif;
-  --font-rounded: "Open Runde", "Inter", system-ui, sans-serif;
+  /* Inter Variable is self-hosted (layout.tsx); plain "Inter" covers a local install */
+  --font-sans:   "Inter Variable", "Inter", system-ui, sans-serif;
+  --font-rounded: "Open Runde", "Inter Variable", "Inter", system-ui, sans-serif;
 
   /* ── Radius ── */
   --radius-pill: 9999px;
