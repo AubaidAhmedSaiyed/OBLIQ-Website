@@ -72,11 +72,8 @@ export const metadata: Metadata = {
     },
   },
 
-  icons: {
-    icon:     "/favicon.ico",
-    shortcut: "/favicon.ico",
-    apple:    "/apple-touch-icon.png",
-  },
+  // Icons come from Next.js file conventions: app/favicon.ico, app/icon.svg
+  // and app/apple-icon.tsx — no manual <link> tags needed.
 
   alternates: {
     canonical: siteConfig.url,
