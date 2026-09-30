@@ -105,8 +105,8 @@ The site uses [Plausible](https://plausible.io) — cookie-less and privacy-firs
 To turn it on for the production site:
 
 1. Add the site in Plausible (e.g. `obliq.in`).
-2. In Netlify → *Site configuration → Environment variables*, set `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` to that domain. For a self-hosted Plausible CE, also set `NEXT_PUBLIC_PLAUSIBLE_SRC` to its script URL.
-3. Redeploy (the values are inlined at build time).
+2. In Netlify → *Site configuration → Environment variables*, set `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` to that domain — a bare hostname like `obliq.in` (comma-separate several for roll-up reporting). For a self-hosted Plausible CE, also set `NEXT_PUBLIC_PLAUSIBLE_SRC` to its `https://` script URL.
+3. Redeploy (the values are inlined at build time). An invalid value — e.g. `https://obliq.in` or a non-https script URL — prints an `[analytics] … Analytics disabled.` warning in the build log and ships no tracking, rather than a broken tag.
 4. In Plausible → *Site settings → Goals*, add custom-event goals for the events below so they show on the dashboard.
 
 | Event | Props | Fired when |
@@ -116,6 +116,8 @@ To turn it on for the production site:
 | `Form Submit` | `form`, `position` | The join-our-team form passes validation and is sent |
 
 New CTAs opt in with `data-analytics-cta="<location>"`; other events go through `trackEvent()` in `src/lib/analytics.ts`. Never send anything a visitor typed, and keep the [Privacy Policy](src/app/privacy/page.tsx) in sync with what is tracked. See `.env.example`.
+
+**Content-Security-Policy:** every route is served with a CSP built in `src/lib/csp.ts`. The Plausible origin (taken from the script URL, so self-hosted instances work too) is allowed for scripts and event requests only when analytics is on. Loading anything from a new origin — a form service, an embed, a CDN — means adding it to the matching directive there, or the browser will block it.
 
 ---
 

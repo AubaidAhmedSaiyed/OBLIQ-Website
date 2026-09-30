@@ -25,13 +25,7 @@ export function Analytics() {
 
   if (!analyticsDomain) return null;
 
-  return (
-    <>
-      {/* Queues events fired before the script has loaded */}
-      <Script id="plausible-init" strategy="afterInteractive">
-        {"window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)}"}
-      </Script>
-      <Script src={analyticsScriptSrc} data-domain={analyticsDomain} strategy="afterInteractive" />
-    </>
-  );
+  // No inline init script: trackEvent() installs Plausible's queue stub itself,
+  // so events fired before this loads are still delivered (see lib/analytics.ts).
+  return <Script src={analyticsScriptSrc} data-domain={analyticsDomain} strategy="afterInteractive" />;
 }
