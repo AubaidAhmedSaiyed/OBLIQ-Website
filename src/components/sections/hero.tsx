@@ -126,8 +126,8 @@ export function Hero() {
       {/* ── Main hero content ── */}
       <div className="container-obliq flex-1 flex flex-col items-center justify-center text-center pb-0 pt-12">
 
-        {/* Eyebrow — ink-soft rather than the default muted: 6.7:1 on the sky vs 3.8:1 */}
-        <span className="eyebrow mb-5 animate-fade-up !text-[var(--ink-soft)]" style={enter(0)}>
+        {/* Eyebrow — ink-soft (≈7:1 on the sky) instead of .eyebrow's default muted (≈4:1) */}
+        <span className="eyebrow mb-5 animate-fade-up !text-ink-soft" style={enter(0)}>
           Compliance workflows for CA firms
         </span>
 
