@@ -5,9 +5,11 @@ import Link from "next/link";
  * Global MDX component overrides (required by @next/mdx in the App Router).
  * Typography itself comes from the `.prose-obliq` class in globals.css —
  * here we only swap in components that need behaviour, like client-side
- * navigation for internal links.
+ * navigation for internal links and keyboard access to code blocks.
  */
 const components: MDXComponents = {
+  // Code blocks can scroll sideways, so they must be reachable by keyboard
+  pre: (props) => <pre tabIndex={0} {...props} />,
   a: ({ href = "", children, ...props }) => {
     if (href.startsWith("/") || href.startsWith("#")) {
       return (

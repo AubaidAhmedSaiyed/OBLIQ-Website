@@ -186,7 +186,7 @@ export function Hero() {
               <div className="flex-1 p-6 flex flex-col gap-4">
                 {/* Greeting */}
                 <div>
-                  <h3 className="font-semibold text-sm text-[var(--charcoal)]">Hello, there 👋</h3>
+                  <p className="font-semibold text-sm text-[var(--charcoal)]">Hello, there 👋</p>
                   <p className="text-xs text-[var(--muted)] mt-0.5">What are you working on?</p>
                 </div>
 
@@ -214,7 +214,7 @@ export function Hero() {
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-semibold text-[var(--charcoal)]">Hours overview</span>
                     <div className="flex gap-3">
-                      <span className="text-[10px] text-blue-400">● Billable</span>
+                      <span className="text-[10px] text-blue-600">● Billable</span>
                       <span className="text-[10px] text-[var(--muted)]">● Non-Billable</span>
                     </div>
                   </div>

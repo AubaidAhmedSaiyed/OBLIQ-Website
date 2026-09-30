@@ -21,13 +21,14 @@ export default function ContactPage() {
     <div className="section pt-32">
       <Container narrow>
         <SectionHeading
+          as="h1"
           eyebrow="Contact"
           heading="Let's talk."
           subheading="Have a question, idea, or want to contribute? We'd love to hear from you."
 
         />
         <div className="mt-12">
-          <SectionPlaceholder section={contactPlaceholder} />
+          <SectionPlaceholder section={contactPlaceholder} headingLevel="h2" />
         </div>
       </Container>
     </div>
