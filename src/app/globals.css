@@ -47,6 +47,11 @@
   --pricing-bg-top:    #ebeef2;
   --pricing-bg-bottom: #e3ecf5;
 
+  /* ── Mockup frames (matches obliqq.framer.ai) ── */
+  --mist:           #f9f8f8;
+  --mockup-app-top:    #99c1e9;
+  --mockup-app-bottom: #ece1d7;
+
   /* ── Borders ── */
   --border:      rgba(0,0,0,0.08);
   --border-card: rgba(0,0,0,0.06);
@@ -75,6 +80,8 @@
   --color-cream-card:    var(--cream-card);
   --color-cream-pill:    var(--cream-pill);
   --color-charcoal:      var(--charcoal);
+  --color-ink:           var(--ink);
+  --color-mist:          var(--mist);
   --color-muted:         var(--muted);
   --color-body-text:     var(--body-text);
   --color-rust:          var(--rust);
