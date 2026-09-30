@@ -98,6 +98,27 @@ The homepage is a **live contributor to-do board** — each placeholder section 
 
 ---
 
+## 📈 Analytics (maintainers)
+
+The site uses [Plausible](https://plausible.io) — cookie-less and privacy-first. It is **off by default**: nothing loads unless `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` is set at build time, so local dev, forks and self-hosted copies stay analytics-free.
+
+To turn it on for the production site:
+
+1. Add the site in Plausible (e.g. `obliq.in`).
+2. In Netlify → *Site configuration → Environment variables*, set `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` to that domain. For a self-hosted Plausible CE, also set `NEXT_PUBLIC_PLAUSIBLE_SRC` to its script URL.
+3. Redeploy (the values are inlined at build time).
+4. In Plausible → *Site settings → Goals*, add custom-event goals for the events below so they show on the dashboard.
+
+| Event | Props | Fired when |
+|-------|-------|-----------|
+| `CTA Click` | `location` (`hero`, `navbar`, `mobile-menu`, `pricing-<plan>`) | A "Try Obliq free" / pricing CTA is clicked |
+| `Pricing Toggle` | `billing` (`annually` / `monthly`) | The billing switch changes |
+| `Form Submit` | `form`, `position` | The join-our-team form passes validation and is sent |
+
+New CTAs opt in with `data-analytics-cta="<location>"`; other events go through `trackEvent()` in `src/lib/analytics.ts`. Never send anything a visitor typed, and keep the [Privacy Policy](src/app/privacy/page.tsx) in sync with what is tracked. See `.env.example`.
+
+---
+
 ## 📜 Scripts
 
 ```bash

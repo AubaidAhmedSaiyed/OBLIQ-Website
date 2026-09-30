@@ -5,6 +5,7 @@ import "@fontsource/open-runde/600.css";
 import "./globals.css";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
+import { Analytics } from "@/components/analytics";
 import { siteConfig } from "@/lib/site";
 
 // Fonts are loaded via CSS @import in globals.css (Inter + Plus Jakarta Sans)
@@ -96,6 +97,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );

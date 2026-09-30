@@ -104,7 +104,7 @@ export function Navbar() {
           </nav>
 
           {/* Desktop CTA */}
-          <Link href="/contact" className="btn-primary hidden md:inline-flex" style={{ fontSize: "0.875rem", padding: "0.55rem 1.25rem" }}>
+          <Link href="/contact" data-analytics-cta="navbar" className="btn-primary hidden md:inline-flex" style={{ fontSize: "0.875rem", padding: "0.55rem 1.25rem" }}>
             Try Obliq free
           </Link>
 
@@ -161,7 +161,7 @@ export function Navbar() {
             );
           })}
           <div className="divider my-4" />
-          <Link href="/contact" className="btn-primary text-center text-base py-4">
+          <Link href="/contact" data-analytics-cta="mobile-menu" className="btn-primary text-center text-base py-4">
             Try Obliq free
           </Link>
         </div>
