@@ -2,6 +2,7 @@ import Link from "next/link";
 import { GitFork, Share2, MessageCircle, Mail } from "lucide-react";
 import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
+import { NewsletterForm } from "./newsletter-form";
 
 const socialLinks = [
   { label: "GitHub",  href: siteConfig.links.github,  icon: <GitFork  className="h-3.5 w-3.5" aria-hidden="true" /> },
@@ -19,11 +20,11 @@ export function Footer() {
       aria-label="Site footer"
     >
       <div className="container-obliq">
-        {/* Main grid */}
-        <div className="py-14 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-6">
+        {/* Main grid — brand spans the full row on mobile/tablet, link columns sit two-up */}
+        <div className="py-14 grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-6 lg:gap-10">
 
           {/* Brand — 2 cols */}
-          <div className="lg:col-span-2 flex flex-col gap-5">
+          <div className="col-span-2 flex flex-col gap-5">
             {/* Logo */}
             <Link href="/" aria-label="Obliq home" className="group w-fit flex items-center gap-1">
               <span
@@ -74,6 +75,8 @@ export function Footer() {
               <Mail className="h-3.5 w-3.5" aria-hidden="true" />
               {siteConfig.email.support}
             </a>
+
+            <NewsletterForm />
           </div>
 
           {/* Nav columns */}
