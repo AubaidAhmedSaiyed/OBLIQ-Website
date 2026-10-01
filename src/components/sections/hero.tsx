@@ -136,7 +136,7 @@ export function Hero() {
           className="mt-8 flex flex-wrap items-center justify-center gap-3 animate-fade-up"
           style={{ animationDelay: "160ms" }}
         >
-          <Link href="/contact" className="btn-primary" style={{ fontSize: "1rem", padding: "0.75rem 1.75rem" }}>
+          <Link href="/contact" data-analytics-cta="hero" className="btn-primary" style={{ fontSize: "1rem", padding: "0.75rem 1.75rem" }}>
             Try Obliq free
           </Link>
           <Link

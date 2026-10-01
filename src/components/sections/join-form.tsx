@@ -3,6 +3,7 @@
 import { useRef, useState, type FormEvent, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { positions } from "@/lib/positions";
+import { trackEvent } from "@/lib/analytics";
 import { siteConfig } from "@/lib/site";
 
 type FieldName =
@@ -146,6 +147,7 @@ export function JoinForm() {
     }
 
     setStatus("loading");
+    trackEvent("Form Submit", { form: "join", position: values.position });
     await submitApplication(values);
     setStatus("sent");
   }

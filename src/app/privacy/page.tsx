@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/privacy" },
 };
 
-const LAST_UPDATED = "29 September 2026";
+const LAST_UPDATED = "30 September 2026";
 
 function PolicySection({
   id,
@@ -176,6 +176,14 @@ export default function PrivacyPage() {
                 service that delivers them to us.
                 {/* TODO(maintainers): name the form/email provider(s) once issues #33 and #45 are wired up. */}
               </li>
+              <li>
+                <strong className="text-[var(--charcoal)]">Plausible Analytics</strong> — counts
+                visits and a few button clicks, without cookies. See{" "}
+                <a href="https://plausible.io/data-policy" target="_blank" rel="noopener noreferrer">
+                  Plausible&rsquo;s data policy
+                </a>
+                .
+              </li>
             </ul>
             <p>
               Links to other sites (GitHub, Discord, social networks) are governed by those
@@ -185,13 +193,22 @@ export default function PrivacyPage() {
 
           <PolicySection id="cookies" title={sections[4].title}>
             <p>
-              This website does not currently set any cookies of its own and does not run any
-              analytics or tracking scripts.
+              This website does not set any cookies of its own.
             </p>
             <p>
-              If we add analytics in the future, we will prefer privacy-friendly, cookie-less tools,
-              update this page before it goes live, and ask for your consent wherever the law
-              requires it.
+              We use{" "}
+              <a href="https://plausible.io/data-policy" target="_blank" rel="noopener noreferrer">
+                Plausible Analytics
+              </a>{" "}
+              to count visits and a few actions (clicks on sign-up buttons, the pricing
+              monthly/annual switch, and form submissions). Plausible uses no cookies, does not
+              track you across sites or devices, and stores no personal data: your IP address is
+              only used to derive an anonymous daily visitor count and is never stored. We never
+              send what you type into a form to analytics.
+            </p>
+            <p>
+              Copies of this site run by others (forks or self-hosted builds) have analytics
+              switched off unless their operator turns it on.
             </p>
           </PolicySection>
 
