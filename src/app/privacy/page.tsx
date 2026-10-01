@@ -147,14 +147,6 @@ export default function PrivacyPage() {
                 {/* TODO(maintainers): name the hosting provider (e.g. Vercel) and link its privacy policy. */}
               </li>
               <li>
-                <strong className="text-[var(--charcoal)]">Google Fonts</strong> — delivers the
-                Inter typeface.{" "}
-                <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
-                  Google Privacy Policy
-                </a>
-                .
-              </li>
-              <li>
                 <strong className="text-[var(--charcoal)]">GitHub and jsDelivr</strong> — host
                 brand images and screenshots.{" "}
                 <a

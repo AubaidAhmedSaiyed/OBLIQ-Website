@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import "@fontsource-variable/inter";
 import "@fontsource/open-runde/400.css";
 import "@fontsource/open-runde/500.css";
 import "@fontsource/open-runde/600.css";
@@ -8,8 +9,9 @@ import { Footer } from "@/components/layout/footer";
 import { Analytics } from "@/components/analytics";
 import { siteConfig } from "@/lib/site";
 
-// Fonts are loaded via CSS @import in globals.css (Inter + Plus Jakarta Sans)
-// This avoids Turbopack font module resolution issues in Next.js 15.5.x
+// Fonts are self-hosted via Fontsource: Inter (variable, 100–900) for body and
+// headings, Open Runde for rounded UI text. No third-party font requests, and
+// no next/font — it had Turbopack module resolution issues in Next.js 15.5.x.
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
