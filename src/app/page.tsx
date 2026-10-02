@@ -67,7 +67,12 @@ export default function HomePage() {
           <div className="mt-10 text-center">
             <p className="text-sm text-[var(--muted)]">
               New to open source?{" "}
-              <a href="/contributing" className="underline underline-offset-4 hover:text-[var(--charcoal)] transition-colors">
+              <a
+                href={`${siteConfig.links.repo}/blob/main/CONTRIBUTING.md`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-4 hover:text-[var(--charcoal)] transition-colors"
+              >
                 Start with the Contributing Guide
               </a>
             </p>
