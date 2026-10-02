@@ -33,7 +33,7 @@ export function ProjectManagement() {
     <section
       id="features"
       aria-label="Project Management"
-      className="section scroll-mt-24 bg-mist/50"
+      className="section scroll-mt-24 bg-[var(--cream-2)]/50"
     >
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">

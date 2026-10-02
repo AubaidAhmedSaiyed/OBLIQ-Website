@@ -27,7 +27,6 @@
   --cream-2:     #efece6;
   --cream-card:  #eae6df;
   --cream-pill:  #e5e1da;
-  --mist:        #efece6;
 
   /* ── Text ── */
   --charcoal:    #181818;
@@ -174,13 +173,13 @@
   --color-charcoal:      var(--charcoal);
   --color-ink:           var(--ink);
   --color-ink-soft:      var(--ink-soft);
-  --color-mist:          var(--mist);
   --color-muted:         var(--muted);
   --color-body-text:     var(--body-text);
   --color-rust:          var(--rust);
   --color-blue-accent:   var(--blue-accent);
   --color-obliq-lime-light: var(--obliq-lime-light);
   --color-obliq-periwinkle-light: var(--obliq-periwinkle-light);
+  --color-lime:          var(--lime);
   --font-sans:           var(--font-sans);
 }
 
