@@ -14,14 +14,9 @@ import type { Testimonial } from "@/types";
  * stock photos of real people.
  */
 
+// The Spotlight testimonial directly above this section (Martha Punla) is
+// deliberately omitted so the same quote never appears twice in a row.
 const TESTIMONIALS: Testimonial[] = [
-  {
-    quote:
-      "Obliq is by far the best agency tool I have ever used",
-    author: "Martha Punla",
-    role: "VP Marketing",
-    company: "Meta",
-  },
   {
     quote:
       "As a fast-moving design team, we needed a tool that matched our pace. From client onboarding to getting paid, this just works — clean, fast, and beautifully built.",
@@ -68,7 +63,7 @@ export function TestimonialMarquee() {
             "flex w-max animate-marquee group-hover:[animation-play-state:paused]",
             "motion-reduce:w-full motion-reduce:animate-none motion-reduce:justify-center"
           )}
-          style={{ animationDuration: `${LISTS_PER_LOOP * 25}s` }}
+          style={{ animationDuration: `${LOOP_SECONDS}s` }}
         >
           {lists.map((i) => (
             <CardList key={i} testimonials={TESTIMONIALS} duplicate={i > 0} />
@@ -81,10 +76,11 @@ export function TestimonialMarquee() {
 
 /**
  * One loop must be wider than the widest common screen (2560px) so the
- * -50% slide never exposes a gap: 4 cards ≈ 1440px → 2 lists per loop.
+ * -50% slide never exposes a gap: 3 cards ≈ 1080px → 3 lists per loop.
  * The track renders that loop twice for the seamless cycle.
  */
-const LISTS_PER_LOOP = 2;
+const LISTS_PER_LOOP = 3;
+const LOOP_SECONDS = 50;
 const lists = Array.from({ length: LISTS_PER_LOOP * 2 }, (_, i) => i);
 
 function CardList({
