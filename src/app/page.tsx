@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/sections/hero";
 import { SpotlightTestimonial } from "@/components/sections/SpotlightTestimonial";
+import { TestimonialMarquee } from "@/components/sections/TestimonialMarquee";
 import { Pricing } from "@/components/sections/pricing";
 import { FeaturesSection } from "@/components/sections/FeaturesSection";
 import { SectionPlaceholder, placeholderSections } from "@/components/sections/placeholder";
@@ -84,6 +85,8 @@ export default function HomePage() {
       <FeaturesSection />
 
       <SpotlightTestimonial />
+
+      <TestimonialMarquee />
 
       <Pricing />
     </>
