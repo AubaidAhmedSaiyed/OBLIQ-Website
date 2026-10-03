@@ -63,7 +63,7 @@ test("join form shows validation errors", async ({ page }) => {
   await expect(name).toBeFocused();
   await expect(name).toHaveAttribute("aria-invalid", "true");
   await expect(page.getByText("Please enter your name.")).toBeVisible();
-  await expect(page.getByText("Please attach your resume.")).toBeVisible();
+  await expect(page.getByText("Please add a link to your resume.")).toBeVisible();
 
   await page.getByLabel("Email").fill("not-an-email");
   await page.getByRole("button", { name: "Submit" }).click();
