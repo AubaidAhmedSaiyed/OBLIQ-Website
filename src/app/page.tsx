@@ -10,6 +10,7 @@ import { siteConfig } from "@/lib/site";
 export const metadata: Metadata = {
   title: `${siteConfig.name} — ${siteConfig.tagline}`,
   description: siteConfig.description,
+  alternates: { canonical: "/" },
 };
 
 const organizationJsonLd = {
