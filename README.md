@@ -119,7 +119,7 @@ To turn it on for the production site:
 
 New CTAs opt in with `data-analytics-cta="<location>"`; other events go through `trackEvent()` in `src/lib/analytics.ts`. Never send anything a visitor typed, and keep the [Privacy Policy](src/app/privacy/page.tsx) in sync with what is tracked. See `.env.example`.
 
-**Content-Security-Policy:** every route is served with a CSP built in `src/lib/csp.ts`. The Plausible origin (taken from the script URL, so self-hosted instances work too) is allowed for scripts and event requests only when analytics is on. Loading anything from a new origin — a form service, an embed, a CDN — means adding it to the matching directive there, or the browser will block it.
+**Content-Security-Policy:** every route is served with a CSP built in `src/lib/csp.ts`. The Plausible origin (taken from the script URL, so self-hosted instances work too) is allowed for scripts and event requests only when analytics is on. Loading anything from a new origin — a form service, an embed, a CDN — means adding it to the matching directive there, or the browser will block it. Fonts are self-hosted, so no font CDN is allowed. `next.config.ts` also sends `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin` and a `Permissions-Policy` that turns off the camera, microphone and geolocation.
 
 ---
 
