@@ -3,6 +3,7 @@ import { Hero } from "@/components/sections/hero";
 import { SectionPlaceholder, placeholderSections } from "@/components/sections/placeholder";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { siteConfig } from "@/lib/site";
+import { Community } from "@/components/sections/Community";
 
 export const metadata: Metadata = {
   title: `${siteConfig.name} — ${siteConfig.tagline}`,
@@ -46,6 +47,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Community Section */}
+      <Community />
     </>
   );
 }
