@@ -8,6 +8,7 @@ import { CTABanner } from "@/components/sections/CTABanner";
 import { SectionPlaceholder, placeholderSections } from "@/components/sections/placeholder";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { siteConfig } from "@/lib/site";
+import { Community } from "@/components/sections/Community";
 
 export const metadata: Metadata = {
   title: `${siteConfig.name} — ${siteConfig.tagline}`,
@@ -90,6 +91,8 @@ export default function HomePage() {
       <TestimonialMarquee />
 
       <Pricing />
+
+      <Community />
 
       <CTABanner />
     </>
