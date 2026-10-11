@@ -22,7 +22,7 @@ import {
  * - ui/ChipList with Tasks, Time tracking, Timesheets, Reports
  * - CTA Button "Try Obliq free" (secondary variant) → /contact-us
  * - ui/MockupFrame variant="app"
- * - section id="features" scroll-mt-24
+ * - section id="project-management" scroll-mt-24
  * - Desktop: text left, image right. Mobile: stacked (image first).
  * - Background: bg-mist/50
  */
@@ -31,7 +31,7 @@ export function ProjectManagement() {
 
   return (
     <section
-      id="features"
+      id="project-management"
       aria-label="Project Management"
       className="section scroll-mt-24 bg-[var(--cream-2)]/50"
     >
